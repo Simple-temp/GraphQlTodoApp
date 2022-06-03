@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Alert, Button, Card, Col } from 'react-bootstrap';
 import { GET_MY_PROFILE } from '../gqloperation/queries';
 
 const Posts = () => {
@@ -9,6 +9,10 @@ const Posts = () => {
 
     return (
         <>
+            {
+                data.myprofile.posts.length === 0 && <Alert variant="info">You don't have have any post</Alert>
+            }
+            <h5 className='text-center mt-4'>Your Posts ({ data.myprofile.posts.length })</h5>
             {loading ? <h4>Loading...</h4>
                 : error ? console.log(error)
                     :
@@ -17,8 +21,8 @@ const Posts = () => {
                             <Col md={6} lg={4} className="my-2" key={Math.random().toString(36)}>
                                 <Card>
                                     <Card.Body>
-                                        <h6> Name : {userPost.post}</h6>
-                                        <Button variant="outline-danger">
+                                        <span className='d-block'> Post : {userPost.post} </span>
+                                        <Button variant="outline-danger mt-3">
                                             <i className="fa-solid fa-trash-can"></i>
                                         </Button>
                                     </Card.Body>

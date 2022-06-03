@@ -40,7 +40,6 @@ const Profile = () => {
                                 </Col>
                                 <Col md={8}>
                                     <Row>
-                                        <h5 className='text-center mt-4'>Your Posts</h5>
                                         <Posts/>
                                     </Row>
                                 </Col>

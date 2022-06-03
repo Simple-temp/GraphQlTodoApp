@@ -46,10 +46,9 @@ const CreatePost = () => {
                 }
                 <Form onSubmit={(e) => handleSubmit(e)}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label>Enter your text</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Enter email"
                             value={post}
                             onChange={(e) => setPost(e.target.value)}
                             required

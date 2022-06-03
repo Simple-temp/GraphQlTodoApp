@@ -31,3 +31,24 @@ query getUserAndPost {
 
 
 `
+
+export const GET_ANOTHER_PROFILE = gql `
+
+query getUserByQueryVariable ( $userId : ID!) {
+  
+  user(_id: $userId){
+    _id
+    name
+    email
+    password
+    website
+    posts{
+      by
+      post
+    }
+  }
+  
+}
+
+
+`

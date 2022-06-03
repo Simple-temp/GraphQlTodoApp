@@ -33,7 +33,7 @@ const PostFeed = () => {
                                 </Card>
                             </Col>
                             <Col md={8} >
-                                <Row>
+                                <Row className='mt-5'>
                                     <AllPost pName={data.myprofile.name} />
                                 </Row>
                             </Col>
