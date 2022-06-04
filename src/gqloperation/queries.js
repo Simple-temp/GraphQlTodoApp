@@ -23,6 +23,7 @@ query getUserAndPost {
     password
     website
     posts {
+      _id
       by 
       post
     }

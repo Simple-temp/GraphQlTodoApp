@@ -30,3 +30,16 @@ mutation createNewPost ($post : String!) {
   }
   
 `
+
+export const DELETE_POST = gql `
+
+mutation deletePost ($userId : ID!){
+  delPost (_id : $userId){
+    _id
+    post
+    by
+  }
+}
+  
+`
+

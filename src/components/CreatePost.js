@@ -2,31 +2,24 @@ import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { Alert, Button, Col, Form } from 'react-bootstrap';
 import { CREATE_POST } from '../gqloperation/mutation';
-import { GET_ALL_POST } from '../gqloperation/queries';
 
 const CreatePost = () => {
 
     const [post, setPost] = useState("")
-    const [createPost, { loading, error, data }] = useMutation(CREATE_POST,{
-        refetchQueries : [
-            "getPostWithName",
-            "getUserAndPost"
-        ]
-    })
+    const [createPost, { loading, error, data }] = useMutation(CREATE_POST)
 
     const handleSubmit = (e) => {
-        e.preventDefault(e)
-        console.log(post)
         createPost({
             variables: {
                 post: post
             }
         })
-        window.location.reload()
+        e.preventDefault(e)
+        console.log(post)
     }
 
     if(data){
-        console.log(data)
+        console.log(data.userpost)
     }
 
     return (
@@ -44,7 +37,7 @@ const CreatePost = () => {
                 {
                     data && <Alert variant="success">{data.userpost}</Alert>
                 }
-                <Form onSubmit={(e) => handleSubmit(e)}>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Enter your text</Form.Label>
                         <Form.Control

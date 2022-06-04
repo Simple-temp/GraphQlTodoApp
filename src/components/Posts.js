@@ -1,11 +1,25 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React from 'react';
 import { Alert, Button, Card, Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { DELETE_POST } from '../gqloperation/mutation';
 import { GET_MY_PROFILE } from '../gqloperation/queries';
 
 const Posts = () => {
 
     const { loading, error, data } = useQuery(GET_MY_PROFILE)
+    const [delPost] = useMutation(DELETE_POST)
+
+    const deletePost = (id) =>{
+        console.log(id)
+        delPost({
+            variables : {
+                userId : id
+            }
+        })
+        toast.success("Delete Successfully")
+        window.location.reload()
+    }
 
     return (
         <>
@@ -22,7 +36,7 @@ const Posts = () => {
                                 <Card>
                                     <Card.Body>
                                         <span className='d-block'> Post : {userPost.post} </span>
-                                        <Button variant="outline-danger mt-3">
+                                        <Button variant="outline-danger mt-3" onClick={()=>deletePost(userPost._id)} >
                                             <i className="fa-solid fa-trash-can"></i>
                                         </Button>
                                     </Card.Body>

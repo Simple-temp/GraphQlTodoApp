@@ -12,8 +12,13 @@ const OtherUserProfile = () => {
     const { loading, error, data } = useQuery(GET_ANOTHER_PROFILE, {
         variables: {
             userId: userid
+        },
+
+    },
+        {
+            fetchPolicy: "cache-and-network"
         }
-    })
+    )
 
     console.log(data)
 
@@ -47,7 +52,9 @@ const OtherUserProfile = () => {
                                             {
                                                 data.user.posts.length === 0 && <Alert variant="info">You don't have have any post</Alert>
                                             }
-                                            <h5 className='text-center mt-4'>Your Posts ({data.user.posts.length})</h5>
+                                            <h5 className='text-center mt-4'>
+                                                {data.user._id === data.user.posts.by ? null : data.user.name} Posts ({data.user.posts.length})
+                                            </h5>
                                             {loading ? <h4>Loading...</h4>
                                                 : error ? console.log(error)
                                                     :

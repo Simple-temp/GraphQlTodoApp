@@ -6,7 +6,11 @@ import { GET_ALL_POST } from '../gqloperation/queries';
 
 const AllPost = ({ pName }) => {
 
-    const { loading, error, data } = useQuery(GET_ALL_POST)
+    const { loading, error, data } = useQuery(GET_ALL_POST,
+        {
+            fetchPolicy : "cache-and-network"
+        }
+    )
 
     return (
         <>

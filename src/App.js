@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import CreatePost from "./components/CreatePost";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -11,6 +13,7 @@ import SignUp from "./components/SignUp";
 function App() {
   return (
     <BrowserRouter>
+     <ToastContainer position='top-right' limit={1} />
       <div className="App">
         <Navbar/>
         <Routes>
