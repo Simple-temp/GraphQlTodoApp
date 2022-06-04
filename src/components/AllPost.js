@@ -34,12 +34,6 @@ const AllPost = ({ pName }) => {
                                         <Card.Text>
                                             Post : {userPost.post}
                                         </Card.Text>
-                                        {
-                                            userPost.by.name === pName ? <Button variant="outline-danger">
-                                                <i className="fa-solid fa-trash-can"></i>
-                                            </Button> : null
-                                        }
-
                                     </Card.Body>
                                 </Card>
                             </Col>

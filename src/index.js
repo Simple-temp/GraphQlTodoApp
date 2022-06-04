@@ -10,7 +10,7 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'https://graphqlsimpleapp.herokuapp.com/graphql',
   cache: new InMemoryCache(),
   headers : {
     authorization : localStorage.getItem("token") || ""

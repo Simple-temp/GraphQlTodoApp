@@ -43,3 +43,18 @@ mutation deletePost ($userId : ID!){
   
 `
 
+export const DELETE_USER = gql `
+
+mutation deleteuser ($userId : ID!){
+  delUser (_id : $userId){
+    _id
+    name
+    email
+    password
+    website
+  }
+}
+
+
+`
+

@@ -24,7 +24,7 @@ const Posts = () => {
     return (
         <>
             {
-                data.myprofile.posts.length === 0 && <Alert variant="info">You don't have have any post</Alert>
+                data.myprofile.posts.length === 0 ? <Alert variant="info">You don't have have any post</Alert> : null
             }
             <h5 className='text-center mt-4'>Your Posts ({ data.myprofile.posts.length })</h5>
             {loading ? <h4>Loading...</h4>

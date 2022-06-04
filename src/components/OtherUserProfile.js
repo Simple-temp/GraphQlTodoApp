@@ -40,9 +40,9 @@ const OtherUserProfile = () => {
                                             <Card.Text>
                                                 <strong>Website:</strong> {data.user.website}
                                             </Card.Text>
-                                            <Button variant="outline-danger">
+                                            {/* <Button variant="outline-danger">
                                                 <i className="fa-solid fa-trash-can"></i>
-                                            </Button>
+                                            </Button> */}
                                         </Card.Body>
                                     </Card>
                                 </Col>
@@ -52,7 +52,7 @@ const OtherUserProfile = () => {
                                             {
                                                 data.user.posts.length === 0 && <Alert variant="info">You don't have have any post</Alert>
                                             }
-                                            <h5 className='text-center mt-4'>
+                                            <h5 className='text-center mt-4 text-capitalize'>
                                                 {data.user._id === data.user.posts.by ? null : data.user.name} Posts ({data.user.posts.length})
                                             </h5>
                                             {loading ? <h4>Loading...</h4>
@@ -64,11 +64,11 @@ const OtherUserProfile = () => {
                                                                 <Card>
                                                                     <Card.Body>
                                                                         <span className='d-block'> Post : {userPost.post} </span>
-                                                                        {
-                                                                            data.user._id === data.user.posts_id ? <Button variant="outline-danger">
+                                                                        {/* {
+                                                                            userid === userPost.by ? <Button variant="outline-danger mt-3">
                                                                                 <i className="fa-solid fa-trash-can"></i>
-                                                                            </Button> : null
-                                                                        }
+                                                                            </Button> : null 
+                                                                        } */}
                                                                     </Card.Body>
                                                                 </Card>
                                                             </Col>
