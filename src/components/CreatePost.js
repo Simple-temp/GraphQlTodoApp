@@ -16,6 +16,7 @@ const CreatePost = () => {
         })
         e.preventDefault(e)
         console.log(post)
+        window.location.reload()
     }
 
     if(data){

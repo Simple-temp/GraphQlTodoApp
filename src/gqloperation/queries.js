@@ -13,6 +13,35 @@ query getPostWithName  {
   }
 
 `
+
+export const GET_POST_BY_ID = gql `
+
+query getPostByQueryVariable ( $postId : ID! ){
+  postById( _id : $postId ){
+    _id
+    by
+    post
+  }
+}
+
+`
+
+// export const GET_USER_BY_ID = gql `
+
+// query getUserByQueryVariable ( $userId : ID!) {
+  
+//   user(_id: $userId){
+//     _id
+//     name
+//     email
+//     password
+//     website
+//   }
+  
+// }
+
+// `
+
 export const GET_MY_PROFILE = gql`
 
 query getUserAndPost {

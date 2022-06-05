@@ -43,6 +43,16 @@ mutation deletePost ($userId : ID!){
   
 `
 
+export const UPDATE_POST = gql`
+
+mutation updatepost ( $Update : UpdatePost! ){
+  updatePost ( UpdatePost : $Update ){
+    post
+  }
+}
+
+`
+
 export const DELETE_USER = gql `
 
 mutation deleteuser ($userId : ID!){
@@ -55,6 +65,20 @@ mutation deleteuser ($userId : ID!){
   }
 }
 
+
+`
+
+export const UPDATE_USER = gql `
+
+mutation updateuser ($Update : UpdateUser!) {
+  updateUser(UpdateUser : $Update){
+		_id
+    name
+    email
+    password
+    website
+  }
+}
 
 `
 

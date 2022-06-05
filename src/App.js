@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import OtherUserProfile from "./components/OtherUserProfile";
 import PostFeed from "./components/PostFeed";
+import PostUpdatePage from "./components/PostUpdatePage";
 import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile/:userid" element={<OtherUserProfile/> } />
           <Route path="/feed" element={<PostFeed/> } />
           <Route path="/createpost" element={<CreatePost/> } />
+          <Route path="/postupdate/:id" element={<PostUpdatePage/> } />
         </Routes>
       </div>
     </BrowserRouter>

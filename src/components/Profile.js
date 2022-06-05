@@ -1,22 +1,25 @@
 import { useMutation, useQuery } from '@apollo/client';
-import React from 'react';
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { DELETE_USER } from '../gqloperation/mutation';
+import { DELETE_USER, UPDATE_USER } from '../gqloperation/mutation';
 import { GET_MY_PROFILE } from '../gqloperation/queries';
 import Posts from './Posts';
 
 const Profile = () => {
 
     const { loading, error, data } = useQuery(GET_MY_PROFILE)
+    const [updateBox, setupdateBox] = useState(false)
+    const [formData, setFormData] = useState({})
     const [deleteuser] = useMutation(DELETE_USER)
+    const [updateUser] = useMutation(UPDATE_USER)
 
     const navigate = useNavigate()
     if (!localStorage.getItem("token")) {
         navigate("/")
     }
-    console.log(data)
+    // console.log(data)
 
     const delUser = (id) => {
         console.log(id)
@@ -29,10 +32,31 @@ const Profile = () => {
         navigate("/")
     }
 
-    const delAlert = () =>{
+    const delAlert = () => {
         toast.error("Please delete your all post")
     }
 
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault(e)
+        console.log(formData)
+        updateUser({
+            variables : {
+                Update : {
+                    _id : data.myprofile._id,
+                    ...formData
+                }
+            }
+        })
+        toast.success("Update profile Successfully")
+        window.location.reload()
+    }
 
     return (
         <div className='container mt-5'>
@@ -60,6 +84,60 @@ const Profile = () => {
                                                 </Button>
                                             }
                                         </Card.Body>
+                                        {
+                                            updateBox ?
+                                                <Form onSubmit={(e) => handleSubmit(e)} className="px-2">
+                                                    <Form.Group className="mb-3" controlId="formBasicName">
+                                                        <Form.Label>Name</Form.Label>
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="name"
+                                                            required
+                                                            onChange={(e) => handleChange(e)}
+                                                        />
+                                                    </Form.Group>
+
+                                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                        <Form.Label>Email</Form.Label>
+                                                        <Form.Control
+                                                            type="email"
+                                                            name="email"
+                                                            required
+                                                            onChange={(e) => handleChange(e)}
+                                                        />
+                                                    </Form.Group>
+
+                                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                                        <Form.Label>Password</Form.Label>
+                                                        <Form.Control
+                                                            type="password"
+                                                            name="password"
+                                                            required
+                                                            onChange={(e) => handleChange(e)}
+                                                        />
+                                                    </Form.Group>
+
+                                                    <Form.Group className="mb-3" controlId="formBasicWebsite">
+                                                        <Form.Label>Website</Form.Label>
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="website"
+                                                            required
+                                                            onChange={(e) => handleChange(e)}
+                                                        />
+                                                    </Form.Group>
+
+                                                    <Button variant="outline-danger my-2" type="submit">
+                                                        Update profile
+                                                    </Button>
+                                                </Form> : null
+                                        }
+                                        <Button variant="outline-danger" onClick={() => setupdateBox(!updateBox)}>
+                                            {
+                                                !updateBox ? <i className="fa-solid fa-pen-to-square"></i>
+                                                    : <i className="fa-solid fa-xmark"></i>
+                                            }
+                                        </Button>
                                     </Card>
                                 </Col>
                                 <Col md={8}>
